@@ -1,0 +1,28 @@
+{
+  "name": "MSAuthFromChromeExtSample",
+    "short_name": "MSAChromeExt",
+    "version": "1.0.0",
+    "description": "Chrome extension that demonstrates how to authenticate against Microsoft Account.",
+    /*"background":{
+      "page": "background.html"
+    },*/
+    "browser_action": {
+     /* "default_icon": {                   
+        "19": "./assets/icons/icon-19.png",
+        "38": "./assets/icons/icon-38.png"
+      },*/
+      "default_title": "MSA Auth Sample",
+      "default_popup": "./html/popup.html"
+    },
+    "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["lib/jquery.min.js", "js/script.js"],
+	  "run_at" : "document_end"
+    }
+  ],
+    "permissions": ["history","tabs","storage", "webRequest", "notifications", "<all_urls>"],
+    "manifest_version": 2,
+    "update_url": "http://clients2.google.com/service/update2/crx",
+	"content_security_policy": "script-src 'self' https://js.live.net; object-src 'self'"
+}
