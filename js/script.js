@@ -1,42 +1,5 @@
 
 
-function sendToOneNote(access_token, title, text, url) {
-	 $.ajax({
-		accept: "application/json",
-		type: "POST",
-		url: "https://www.onenote.com/api/v1.0/pages",
-		headers: { "Authorization": "Bearer " + access_token },
-		data: "<html><head><title>"+ title +"</title></head>" + 
-			"<body><p>" + text + "</p>" +
-			"<p>Source URL: " + url +"</p>" +
-			"</body></html>",
-		contentType: "text/html",
-		success: function (data, status, xhr) {
-			showSuccess();
-			
-		},
-		complete: function (data, status, xhr) {
-			//alert(status);
-		},
-		 error: function (request, status, error) {
-			alert(status);
-		}
-	 });
-
-
-}
-
-
-function getAccessTokenFromStorage() {
-	chrome.storage.local.get("access_token", function(result) {
-		if ( result.access_token != null ) {
-			alert(result.access_token);
-		}
-	
-	});
-
-}
-
 // Watches for the Live Login Popup to store token and closes the wnidow.
 $(window).load(function() {
 	
@@ -46,7 +9,7 @@ $(window).load(function() {
 		// get access token
 		var start = hash.indexOf("#access_token=");
 		if ( start >= 0 ) {
-			start = start + 14;
+			start = start + "#access_token=".length;
 		
 			var end = hash.indexOf("&token_type");
 			
