@@ -3,7 +3,7 @@ function sendToOneNote(access_token, title, text) {
 	 $.ajax({
 		accept: "application/json",
 		type: "POST",
-		url: "https://www.onenote.com/api/beta/pages",
+		url: "https://www.onenote.com/api/v1.0/pages",
 		headers: { "Authorization": "Bearer " + access_token },
 		data: "<html><head><title>"+ title +"</title></head>" + 
 			"<body><p>" + text + "</p>" +
